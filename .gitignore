@@ -1,5 +1,6 @@
 # Code
 dags/
+config/
 logs/
 plugins/
 __pycache__/
@@ -8,6 +9,8 @@ __pycache__/
 .venv/
 venv/
 .env
+airflow-volumes/
+postgresql-volume/
 
 # Windows system files
 Thumbs.db
