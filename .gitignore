@@ -10,6 +10,7 @@ __pycache__/
 venv/
 .env
 postgresql-volume/*
+*.ipynb
 
 # Windows system files
 Thumbs.db
