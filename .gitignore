@@ -10,6 +10,7 @@ __pycache__/
 venv/
 .env
 postgresql-volume/*
+mongodb-volume/*
 *.ipynb
 
 # Windows system files
