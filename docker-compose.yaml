@@ -74,6 +74,9 @@ x-airflow-common:
     # WARNING: Use _PIP_ADDITIONAL_REQUIREMENTS option ONLY for a quick checks
     # for other purpose (development, test and especially production usage) build/extend Airflow image.
     _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-}
+    # MONGODB CONNECTION CREDENTIALS FOR AIRFLOW
+    MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+    MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
   volumes:
     - ${AIRFLOW_PROJ_DIR}/dags:/opt/airflow/dags
     - ${AIRFLOW_PROJ_DIR}/logs:/opt/airflow/logs
@@ -313,6 +316,8 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    volumes:
+      - ./mongodb-volume:/data/db
 
   mongo-express:
     image: mongo-express:1.0.2-20-alpine3.19
@@ -324,7 +329,8 @@ services:
       ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGOEXPRESS_ADMIN_USERNAME}
       ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGOEXPRESS_ADMIN_PASSWORD}
       ME_CONFIG_MONGODB_URL: mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongo:27017/
-      ME_CONFIG_BASICAUTH: true
+      ME_CONFIG_BASICAUTH: false
 
 volumes:
   postgresql-volume:
+  mongodb-volume:
