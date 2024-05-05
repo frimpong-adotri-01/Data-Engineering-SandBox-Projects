@@ -125,6 +125,7 @@ services:
     ports:
       - "8080:8080"
     container_name: airflow-webserver
+    image: airflow-webserver
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
       interval: 30s
@@ -141,6 +142,7 @@ services:
     <<: *airflow-common
     command: scheduler
     container_name: airflow-scheduler
+    image: airflow-scheduler
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:8974/health"]
       interval: 30s
@@ -180,6 +182,7 @@ services:
     <<: *airflow-common
     command: triggerer
     container_name: airflow-triggerer
+    image: airflow-triggerer
     healthcheck:
       test: ["CMD-SHELL", 'airflow jobs check --job-type TriggererJob --hostname "$${HOSTNAME}"']
       interval: 30s
@@ -320,7 +323,7 @@ services:
       - ./mongodb-volume:/data/db
 
   mongo-express:
-    image: mongo-express:1.0.2-20-alpine3.19
+    image: mongo-express:1.0.2
     container_name: MongoExpress
     # restart: always
     ports:
