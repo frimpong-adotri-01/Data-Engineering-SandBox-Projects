@@ -1,6 +1,6 @@
 # Code
 dags/*
-config/*
+airflow-volumes/config/*
 airflow-volumes/logs/*
 airflow-volumes/plugins/*
 __pycache__/
