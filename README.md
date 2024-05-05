@@ -37,16 +37,37 @@ Il faut préalablement avoir installé les outils suivants:
 - **Docker-compose**: version v2.15.1
 - **Python**: version 3.11.7
 
-Les packages pythons suivants:
-- **requests**: version 2.31.0
-- **pymongo**: version 4.7.1
-- **apache-airflow**: version 2.9.0
+Ensuite, se placer dans le répertoire `Data-Engineering-SandBox-Projects` et créer un fichier intitulé `.env` qui contiendra toutes les variables d'environnement (particulièrement les credentials) passées dans le fichier docker-compose.yaml.
+
+```bash
+touch .env
+```
+
+ Copier-coller le snippet ci-dessous dans le fichier `.env` en remplaçant les variables 'xxxxx' par les valeurs de votre choix :
+
+```ini
+AIRFLOW_UID=501
+AIRFLOW_IMAGE_NAME=apache/airflow:2.7.1
+AIRFLOW_PROJ_DIR=./airflow-volumes
+# AIRFLOW WEBSERVER CREDENTIALS
+_AIRFLOW_WWW_USER_USERNAME=xxxxx
+_AIRFLOW_WWW_USER_PASSWORD=xxxxx
+# POSTGRE DATABASE CREDENTIALS
+POSTGRES_USER=xxxxx
+POSTGRES_PASSWORD=xxxxx
+# MONGODB DATABASE CREDENTIALS
+MONGO_INITDB_ROOT_USERNAME=xxxxx
+MONGO_INITDB_ROOT_PASSWORD=xxxxx
+# MONGO-EXPRESS GUI CREDENTIALS
+MONGOEXPRESS_ADMIN_USERNAME=xxxxx
+MONGOEXPRESS_ADMIN_PASSWORD=xxxxx
+```
 
 Ensuite exécuter les commandes suivantes séquentiellement :
 
 - Pour l'initialisation des composantes Airlow dans la stack Docker-compose :
 ```bash
-docker-compose up airflow-init
+docker compose up airflow-init
 ```
 <image src="./images/airflow-init.png" width=1000>
 
@@ -54,17 +75,47 @@ docker-compose up airflow-init
 
 - Pour lancer toute la stack Docker-compose :
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 <image src="./images/docker-compose.png" width=1000>
 
 <br/>
 
+- Vérifier le status des containers et s'assurer que toute la stack aie un status **"healthy"**:
+
+<image src="./images/docker-ps.png" width=1000>
+
+<br/>
+
+- On se rend sur le webserver Airflow pour tester le DAG qu'on a défini dans le fichier `airflow-volumes/dags/velib_data_to_mongodb_DAG.py` :
+
+<image src="./images/airflow-webserver.gif" width=1000>
+
+<br/>
+
+- On se connecte à la base de données MongoDB pour afficher les informations des vélibs récoltés :
+
+<image src="./images/mongo.gif" width=1000>
+
+<br/>
+
+- On se connecte à la base de données PostgreSQL pour observer les metadata des DAGs Airflow :
+
+<image src="./images/postgres.gif" width=1000>
+
+<br/>
+
 - Pour stopper toute la stack Docker-compose :
 ```bash
-docker-compose down
+docker compose down
 ```
 <image src="./images/dockercompose-down.png" width=1000>
 
 <br/>
+
+<br />
+
+## **CRÉDITS**
+
+**AUTEUR :** ADOTRI Frimpong
 
