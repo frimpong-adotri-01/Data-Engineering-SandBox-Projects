@@ -1,3 +1,0 @@
-[2024-05-05T02:23:24.290+0000] {processor.py:161} INFO - Started process (PID=172) to work on /opt/airflow/dags/velib_data_to_mongodb_DAG.py
-[2024-05-05T02:23:24.330+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/velib_data_to_mongodb_DAG.py for tasks to queue
-[2024-05-05T02:23:24.401+0000] {logging_mixin.py:188} INFO - [2024-05-05T02:23:24.387+0000] {dagbag.py:540} INFO - Filling up the DagBag from /opt/airflow/dags/velib_data_to_mongodb_DAG.py
