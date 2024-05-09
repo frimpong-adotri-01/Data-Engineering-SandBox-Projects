@@ -48,5 +48,6 @@ echo "source ~/.bash_profile">>~/.bashrc
 echo "======================= Configurations finales ======================="
 cat /shell_color.txt >> ~/.bashrc
 
+
 sleep 3
 
