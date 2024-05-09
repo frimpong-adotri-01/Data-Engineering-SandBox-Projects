@@ -46,6 +46,8 @@ echo 'export PATH=~/bin:$PATH' >> ~/.bash_profile
 echo "source ~/.bash_profile">>~/.bashrc
 
 echo "======================= Configurations finales ======================="
+apt-get install dos2unix -y        
+dos2unix /shell_color.txt       # S'assure que les metadata (notamment "^M") Windows sont converties en Unix (notamment "\n")
 cat /shell_color.txt >> ~/.bashrc
 
 
