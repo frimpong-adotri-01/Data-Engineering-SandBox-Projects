@@ -1,7 +1,5 @@
 FROM ubuntu:rolling
 
-ENV EXERCISM_TOKEN=$EXERCISM_TOKEN
-
 WORKDIR /home/dev
 
 COPY setup.sh /setup.sh 
