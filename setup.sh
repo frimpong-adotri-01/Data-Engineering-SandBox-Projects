@@ -7,11 +7,6 @@ apt upgrade -y
 echo "======================= Install Sudo ======================="
 apt install sudo -y
 
-useradd -rm -d /home/dev -s /bin/bash -g root -G sudo -u 1000 dev && \
-    echo 'dev:xxxx' | chpasswd && \
-    echo 'root:xxxx' | chpasswd
-
-
 echo "======================= Install Neofetch ======================="
 apt install neofetch -y
 
@@ -26,6 +21,10 @@ apt install git -y
 
 echo "======================= Install and setup SSH ======================="
 apt install openssh-server -y
+
+useradd -rm -d /home/dev -s /bin/bash -g root -G sudo -u 1000 dev && \
+    echo 'dev:test' | chpasswd && \
+    echo 'root:test' | chpasswd
 
 # Set up configuration for SSH
 mkdir /var/run/sshd && \
@@ -49,6 +48,8 @@ echo "======================= Configurations finales ======================="
 apt-get install dos2unix -y        
 dos2unix /shell_color.txt       # S'assure que les metadata (notamment "^M") Windows sont converties en Unix (notamment "\n")
 cat /shell_color.txt >> ~/.bashrc
+
+
 
 
 sleep 3
